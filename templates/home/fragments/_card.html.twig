@@ -1,0 +1,15 @@
+<div class="col">
+    <div class="card shadow-sm h-100">
+        <div class="card-body">
+            <h5 class="card-title">{{ cardTitle }}</h5>
+            <p class="card-text">{{ cardText }}</p>
+            <h3 class="{{ cardClass }}">
+                 {{ cardData }}
+            </h3>
+            {% if cardLink is not same as("none") %}
+            <a href="{{ path(cardLink) }}" class="card-link"></a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+

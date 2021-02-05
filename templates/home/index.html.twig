@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+<div class="album py-5" id="france">
+    <div class="container">
+        <h1 class="mb-5">Les chiffres du COVID-19 en France</h1>
+        <h4>{{ data.FranceGlobalLiveData.0.date }} - Mise à jour à 20h</h4>
+        <p class="card-text">
+            Source des données :
+            {{ data.FranceGlobalLiveData.0.source.nom }} /
+            {{ data.FranceGlobalLiveData.1.source.nom }}
+        </p>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+
+            {{  include('home/fragments/_card.html.twig', {
+                cardTitle: "Nombre d'hospitalisation",
+                cardClass: "card-footer bg-warning text-dark mx-2 rounded-pill",
+                cardText: "Le nombre de personnes qui sont actuellement hospitalisées",
+                cardData: data.FranceGlobalLiveData.0.hospitalises,
+                cardLink: "home"
+            }) }}
+
+            {{  include('home/fragments/_card.html.twig', {
+                cardTitle: "Nouvelles Hospitalisations",
+                cardClass: "card-footer bg-warning text-dark mx-2 rounded-pill",
+                cardText: "Nombre de nouvelles personnes arrivées en hospitalisations",
+                cardData: data.FranceGlobalLiveData.0.nouvellesHospitalisations,
+                cardLink: "home"
+            }) }}
+
+            {{  include('home/fragments/_card.html.twig', {
+                cardTitle: "Nombre de Réa",
+                cardClass: "card-footer bg-warning text-dark mx-2 rounded-pill",
+                cardText: "Nombre de personnes actuellement en réanimation",
+                cardData: data.FranceGlobalLiveData.0.reanimation,
+                cardLink: "home"
+            }) }}
+
+            {{  include('home/fragments/_card.html.twig', {
+                cardTitle: "Nouvelles Réa",
+                cardClass: "card-footer bg-warning text-dark mx-2 rounded-pill",
+                cardText: "Nombre de nouvelles personnes arrivées en réanimation",
+                cardData: data.FranceGlobalLiveData.0.nouvellesReanimations,
+                cardLink: "home"
+            }) }}
+
+            {{  include('home/fragments/_card.html.twig', {
+                cardTitle: "Nombre total de décès",
+                cardClass: "card-footer bg-dark text-light mx-2 rounded-pill",
+                cardText: "Nombre de personnes décédées depuis le début de la pandémie",
+                cardData:  data.FranceGlobalLiveData.0.deces + data.FranceGlobalLiveData.0.decesEhpad ,
+                cardLink: "home"
+            }) }}
+
+            {{  include('home/fragments/_card.html.twig', {
+                cardTitle: "Nombre de décès en EHPAD",
+                cardClass: "card-footer bg-dark text-light mx-2 rounded-pill",
+                cardText: "Nombre de personnes décédées en EHPAD depuis le début de la pandémie",
+                cardData:  data.FranceGlobalLiveData.0.decesEhpad ,
+                cardLink: "home"
+            }) }}
+
+            {{  include('home/fragments/_card.html.twig', {
+                cardTitle: "Nombre total de guéris",
+                cardClass: "card-footer bg-success text-dark mx-2 rounded-pill",
+                cardText: "Nombre de personnes guéries depuis le début de la pandéme",
+                cardData:  data.FranceGlobalLiveData.0.gueris ,
+                cardLink: "home"
+            }) }}
+
+            {{  include('home/fragments/_card.html.twig', {
+                cardTitle: "Nombre de cas confirmés",
+                cardClass: "card-footer bg-info text-dark mx-2 rounded-pill",
+                cardText: "Nombre de cas confirmés depuis le début de la pandémie",
+                cardData:  data.FranceGlobalLiveData.0.casConfirmes + data.FranceGlobalLiveData.0.casConfirmesEhpad,
+                cardLink: "home"
+            }) }}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

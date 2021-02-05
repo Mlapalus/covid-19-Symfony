@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les chiffres du COVID-19|{{ data.LiveDataByDepartement.0.nom }}
+{% endblock %}
+
+{% block body %}
+    <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">Les chiffres du COVID-19
+            {{ data.LiveDataByDepartement.0.nom }}</h1>
+        <p class="lead">Source :
+            {{ data.LiveDataByDepartement.0.sourceType }}</p>
+        <p class="lead">Date d'actualisation :
+            {{ data.LiveDataByDepartement.0.date }}</p>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+        {{  include('home/fragments/_card.html.twig', {
+            cardTitle: "Nombre d'hospitalisation",
+            cardClass: "card-footer bg-warning text-dark mx-2 rounded-pill",
+            cardText: "Le nombre de personnes qui sont actuellement hospitalisées",
+            cardData: data.LiveDataByDepartement.0.hospitalises,
+            cardLink: "home"
+        }) }}
+
+        {{  include('home/fragments/_card.html.twig', {
+            cardTitle: "Nouvelles Hospitalisations",
+            cardClass: "card-footer bg-warning text-dark mx-2 rounded-pill",
+            cardText: "Nombre de nouvelles personnes arrivées en hospitalisations",
+            cardData: data.LiveDataByDepartement.0.nouvellesHospitalisations,
+            cardLink: "home"
+        }) }}
+
+        {{  include('home/fragments/_card.html.twig', {
+            cardTitle: "Nombre de Réa",
+            cardClass: "card-footer bg-warning text-dark mx-2 rounded-pill",
+            cardText: "Nombre de personnes actuellement en réanimation",
+            cardData: data.LiveDataByDepartement.0.reanimation,
+            cardLink: "home"
+        }) }}
+
+        {{  include('home/fragments/_card.html.twig', {
+            cardTitle: "Nouvelles Réa",
+            cardClass: "card-footer bg-warning text-dark mx-2 rounded-pill",
+            cardText: "Nombre de nouvelles personnes arrivées en réanimation",
+            cardData: data.LiveDataByDepartement.0.nouvellesReanimations,
+            cardLink: "home"
+        }) }}
+
+        {{  include('home/fragments/_card.html.twig', {
+            cardTitle: "Nombre total de décès",
+            cardClass: "card-footer bg-dark text-light mx-2 rounded-pill",
+            cardText: "Nombre de personnes décédées depuis le début de la pandémie",
+            cardData:  data.LiveDataByDepartement.0.deces ,
+            cardLink: "home"
+        }) }}
+
+        {{  include('home/fragments/_card.html.twig', {
+            cardTitle: "Nombre total de guéris",
+            cardClass: "card-footer bg-success text-dark mx-2 rounded-pill",
+            cardText: "Nombre de personnes guéries depuis le début de la pandéme",
+            cardData:  data.LiveDataByDepartement.0.gueris ,
+            cardLink: "home"
+        }) }}
+
+
+    </div>
+{% endblock %}
